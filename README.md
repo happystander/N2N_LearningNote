@@ -16,6 +16,7 @@
 #### 1.2.2实际方法
 作者通过针对输入的噪声图像进行了pair downsample，这种方式比较巧妙,图像通过两个卷积核进行下采样，得到两张采样之后的噪声图像，具体采样方式如下：
 ![img](./imgs/downsample.png)
+
 作者提出，在一张clean的图像中像素点之间是存在强相关性的，因此作者这种方式可以理解为D1和D2两种采样方式在原clean图像上采样得到理论上来说是具有极强相似性的图像，值得注意的是，由于采样降低了图像的像素点个数，高频噪声采样之后会变得非常显著。
 
 同时作者用一个简单的CNN模型实现D1(y) -> D2(y)，去噪操作后续进行详细讲解
@@ -88,6 +89,7 @@ output2 = F.conv2d(img, filter2, stride=2, groups=c)/0.8
 
 #### 2.2.3 ThreeSizeSample(3X3)
 基于原论文举一反三，根据pair sample在3x3的卷积核上的实现，具体采样方式如下：
+![img](./imgs/threesample.png)
 ```python
  #3X3 sample
 filter1 = torch.FloatTensor([[[[0 ,0.5,0],[0.5, 0.01,0.5],[0 ,0.5,0]]]]).to(img.device)
