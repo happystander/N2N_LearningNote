@@ -27,7 +27,7 @@
 
 即: $||D_1(y) - f_\Theta(D_1(y)) -D_2(y)||^2$ (原论文给出的公式,一眼很难理解)
 
-然后，根据**对称性**，就可以得到正则化$L_{res}$函数:
+然后，根据**对称性**，就可以得到正则化 $L_{res}$函数:
  $L_{res} = ||D_1(y) - f_\Theta(D_1(y)) -D_2(y)||^2/2 +   ||D_2(y) - f_\Theta(D_2(y)) -D_1(y)||^2/2$
 
 再由**一致性**(经过下采样之后的图像经过去噪得到的结果和去噪之后的图像再下采样的结果一致)可以得到：
@@ -40,10 +40,10 @@ $L_{cons} = ||D(y) - f_\Theta(D(y)) - D(y - f_\Theta(y))||^2  =
 ### 2.1原论文结果展示
 根据原论文代码和参数，直接展示原论文给出图像的最终结果：
 ![img](./imgs/orignal.jpg)
-> max_epoch = 3000     # training epochs
- lr = 0.001           # learning rate 0.001
- step_size = 1000     # number of epochs at which learning rate decays
- gamma = 0.5          # factor by which learning rate decays
+>max_epoch = 3000     # training epochs 
+>lr = 0.001           # learning rate 0.001
+>step_size = 1000     # number of epochs at which learning rate decays
+>gamma = 0.5          # factor by which learning rate decays
 
 训练过程中每个step的**PSNR**如下:
 ![img](./imgs/orignal_train.jpg)
