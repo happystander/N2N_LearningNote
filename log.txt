@@ -1,0 +1,180 @@
+noise_type:gauss noise_level:10 dataset:Kodak24 
+sampleType:orignal --serial 0 PSNR:31.765016103083884
+
+noise_type:gauss noise_level:10 dataset:McMaster 
+sampleType:orignal --serial 0 PSNR:32.60741110854958
+
+noise_type:gauss noise_level:10 dataset:Kodak24 
+sampleType:avgPoolAndRandomPool --serial 6 PSNR:29.062866779997666
+
+noise_type:gauss noise_level:10 dataset:McMaster 
+sampleType:avgPoolAndRandomPool --serial 6 PSNR:29.921417647989887
+
+noise_type:gauss noise_level:10 dataset:Kodak24 
+sampleType:threeSizeSample --serial 3 PSNR:31.023153498242987
+
+noise_type:gauss noise_level:10 dataset:McMaster 
+sampleType:threeSizeSample --serial 3 PSNR:31.381767704059364
+
+noise_type:gauss noise_level:10 dataset:Kodak24 
+sampleType:stripe --serial 4 PSNR:29.39043638651313
+
+noise_type:gauss noise_level:10 dataset:McMaster 
+sampleType:stripe --serial 4 PSNR:29.935700034499753
+
+noise_type:poiss noise_level:10 dataset:Kodak24 
+sampleType:orignal --serial 0 PSNR:24.63998252012159
+
+noise_type:poiss noise_level:10 dataset:McMaster 
+sampleType:orignal --serial 0 PSNR:24.737993055765
+
+noise_type:poiss noise_level:10 dataset:Kodak24 
+sampleType:avgPoolAndRandomPool --serial 6 PSNR:23.888725505988486
+
+noise_type:poiss noise_level:10 dataset:McMaster 
+sampleType:avgPoolAndRandomPool --serial 6 PSNR:24.383550687148443
+
+noise_type:poiss noise_level:10 dataset:Kodak24 
+sampleType:threeSizeSample --serial 3 PSNR:23.37860894241406
+
+noise_type:poiss noise_level:10 dataset:McMaster 
+sampleType:threeSizeSample --serial 3 PSNR:23.209275436613442
+
+noise_type:poiss noise_level:10 dataset:Kodak24 
+sampleType:stripe --serial 4 PSNR:24.380419204099425
+
+noise_type:poiss noise_level:10 dataset:McMaster 
+sampleType:stripe --serial 4 PSNR:24.526338380007147
+
+noise_type:gauss noise_level:25 dataset:Kodak24 
+sampleType:orignal --serial 0 PSNR:28.201306032300106
+
+noise_type:gauss noise_level:25 dataset:McMaster 
+sampleType:orignal --serial 0 PSNR:27.71969076892901
+
+noise_type:gauss noise_level:25 dataset:Kodak24 
+sampleType:avgPoolAndRandomPool --serial 6 PSNR:26.61060509887395
+
+noise_type:gauss noise_level:25 dataset:McMaster 
+sampleType:avgPoolAndRandomPool --serial 6 PSNR:26.646907153163863
+
+noise_type:gauss noise_level:25 dataset:Kodak24 
+sampleType:threeSizeSample --serial 3 PSNR:27.060378680348276
+
+noise_type:gauss noise_level:25 dataset:McMaster 
+sampleType:threeSizeSample --serial 3 PSNR:26.503910908316286
+
+noise_type:gauss noise_level:25 dataset:Kodak24 
+sampleType:stripe --serial 4 PSNR:27.137841081186462
+
+noise_type:gauss noise_level:25 dataset:McMaster 
+sampleType:stripe --serial 4 PSNR:26.895122695039102
+
+noise_type:poiss noise_level:25 dataset:Kodak24 
+sampleType:orignal --serial 0 PSNR:27.11037150793318
+
+noise_type:poiss noise_level:25 dataset:McMaster 
+sampleType:orignal --serial 0 PSNR:27.282469249270306
+
+noise_type:poiss noise_level:25 dataset:Kodak24 
+sampleType:avgPoolAndRandomPool --serial 6 PSNR:25.906800015478606
+
+noise_type:poiss noise_level:25 dataset:McMaster 
+sampleType:avgPoolAndRandomPool --serial 6 PSNR:26.47041069752629
+
+noise_type:poiss noise_level:25 dataset:Kodak24 
+sampleType:threeSizeSample --serial 3 PSNR:25.821359365576324
+
+noise_type:poiss noise_level:25 dataset:McMaster 
+sampleType:threeSizeSample --serial 3 PSNR:25.837963428284862
+
+noise_type:poiss noise_level:25 dataset:Kodak24 
+sampleType:stripe --serial 4 PSNR:26.354139115186218
+
+noise_type:poiss noise_level:25 dataset:McMaster 
+sampleType:stripe --serial 4 PSNR:26.72410542495548
+
+noise_type:gauss noise_level:50 dataset:Kodak24 
+sampleType:orignal --serial 0 PSNR:24.265330529078735
+
+noise_type:gauss noise_level:50 dataset:McMaster 
+sampleType:orignal --serial 0 PSNR:23.226792004393147
+
+noise_type:gauss noise_level:50 dataset:Kodak24 
+sampleType:avgPoolAndRandomPool --serial 6 PSNR:23.548712049104854
+
+noise_type:gauss noise_level:50 dataset:McMaster 
+sampleType:avgPoolAndRandomPool --serial 6 PSNR:22.8614852152167
+
+noise_type:gauss noise_level:50 dataset:Kodak24 
+sampleType:threeSizeSample --serial 3 PSNR:23.300704240651587
+
+noise_type:gauss noise_level:50 dataset:McMaster 
+sampleType:threeSizeSample --serial 3 PSNR:22.33870254637075
+
+noise_type:gauss noise_level:50 dataset:Kodak24 
+sampleType:stripe --serial 4 PSNR:23.95362615967436
+
+noise_type:gauss noise_level:50 dataset:McMaster 
+sampleType:stripe --serial 4 PSNR:22.99623858221802
+
+noise_type:poiss noise_level:50 dataset:Kodak24 
+sampleType:orignal --serial 0 PSNR:28.780003063288405
+
+noise_type:poiss noise_level:50 dataset:McMaster 
+sampleType:orignal --serial 0 PSNR:29.136332781031577
+
+noise_type:poiss noise_level:50 dataset:Kodak24 
+sampleType:avgPoolAndRandomPool --serial 6 PSNR:27.02767205335897
+
+noise_type:poiss noise_level:50 dataset:McMaster 
+sampleType:avgPoolAndRandomPool --serial 6 PSNR:27.80759388584945
+
+noise_type:poiss noise_level:50 dataset:Kodak24 
+sampleType:threeSizeSample --serial 3 PSNR:27.612206425625413
+
+noise_type:poiss noise_level:50 dataset:McMaster 
+sampleType:threeSizeSample --serial 3 PSNR:27.769896943846746
+
+noise_type:poiss noise_level:50 dataset:Kodak24 
+sampleType:stripe --serial 4 PSNR:27.573180706058096
+
+noise_type:poiss noise_level:50 dataset:McMaster 
+sampleType:stripe --serial 4 PSNR:28.067646150254042 
+noise_type:gauss noise_level:10 dataset:Kodak24 
+noise_type:gauss noise_level:10 dataset:Kodak24 
+sampleType:avgPoolAndRandomPool_step --serial 6 PSNR:29.017261190400706
+noise_type:gauss noise_level:10 dataset:McMaster 
+sampleType:avgPoolAndRandomPool_step --serial 6 PSNR:30.420419767049097
+
+
+noise_type:poiss noise_level:10 dataset:Kodak24 
+sampleType:avgPoolAndRandomPool_step --serial 6 PSNR:24.51742658752416
+noise_type:poiss noise_level:10 dataset:McMaster 
+sampleType:avgPoolAndRandomPool_step --serial 6 PSNR:24.73299586295389
+
+
+noise_type:gauss noise_level:25 dataset:Kodak24 
+sampleType:avgPoolAndRandomPool_step --serial 6 PSNR:27.084612059945158
+noise_type:gauss noise_level:25 dataset:McMaster 
+sampleType:avgPoolAndRandomPool_step --serial 6 PSNR:27.09919699566835
+
+
+noise_type:poiss noise_level:25 dataset:Kodak24 
+sampleType:avgPoolAndRandomPool_step --serial 6 PSNR:26.400508687404947
+noise_type:poiss noise_level:25 dataset:McMaster 
+sampleType:avgPoolAndRandomPool_step --serial 6 PSNR:26.89296667022657
+
+
+noise_type:gauss noise_level:50 dataset:Kodak24 
+sampleType:avgPoolAndRandomPool_step --serial 6 PSNR:23.997400063797617
+noise_type:gauss noise_level:50 dataset:McMaster 
+sampleType:avgPoolAndRandomPool_step --serial 6 PSNR:23.078842209909798
+
+
+noise_type:poiss noise_level:50 dataset:Kodak24 
+sampleType:avgPoolAndRandomPool_step --serial 6 PSNR:27.55859254637116
+noise_type:poiss noise_level:50 dataset:McMaster 
+sampleType:avgPoolAndRandomPool_step --serial 6 PSNR:28.375802548241307
+
+

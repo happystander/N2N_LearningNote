@@ -40,6 +40,7 @@ $L_{cons} = ||D(y) - f_\Theta(D(y)) - D(y - f_\Theta(y))||^2  =
 ### 2.1原论文结果展示
 根据原论文代码和参数，直接展示原论文给出图像的最终结果：
 ![img](./imgs/orignal.jpg)
+
 >max_epoch = 3000     # training epochs 
 >lr = 0.001           # learning rate 0.001
 >step_size = 1000     # number of epochs at which learning rate decays
@@ -172,6 +173,40 @@ output2 = randomPooler(img)
 
 最终的训练结果PSNR为29.19。
 
+### 2.2.8   avgPoolAndRandomPool_step（更新）
+
+```python
+    if use_step_filter and (mini_epoch < 1000 ) :
+        if mini_epoch != None and mini_epoch % 2 == 0:
+            sampleType = downsamplerType["stripe"] # todo change
+
+        if mini_epoch != None and mini_epoch % 3 == 0:
+            sampleType = downsamplerType["stripeReverse"] # todo change
+
+        if mini_epoch != None and mini_epoch % 5 == 0:
+            sampleType = downsamplerType["remoteWeight"] # todo change
+
+        if mini_epoch != None and mini_epoch % 10 == 0:
+            sampleType = downsamplerType["remoteNegativeWeight"] # todo change threeSizeSamplePlus
+
+        if mini_epoch != None and mini_epoch % 20 == 0:
+            sampleType = downsamplerType["threeSizeSample"] # todo change remoteNegativeWeight
+
+        return *downsampler_tool(img,sampleType, upSample),sampleType
+
+    if 1000<= mini_epoch <= 3000:
+        return *downsampler_tool(img,downsamplerType["stripeReverse"], upSample),downsamplerType["stripeReverse"]
+```
+
+​	这种方式是前几种方式的综合使用，一般情况下，使用效果最好的avgPoolAndRandomPool方法来进行采样,在epoch小于500时，模型的epoch数值满足以上条件的时候进行对应的采样，当大于1000时，统一使用stripReverse方法来进行采样(**注:stripReverse 的采样核为[[[0.5, 0.5], [0, 0]] 和[[0, 0], [0.5, 0.5]]**)。这种方式综合了stripe、stripeReverse、remoteWeight、remoteNegativeWeight、threeSizeSample的多项优点能迅速拟合，并且能后期使用stripeReverse方法来进行优化。
+
+![image-20240808151858275](./assets/image-20240808151858275.png)
+
+​	**最终在原论文测试的图像上达到的效果为31.392125396133945 ，比31.28还高0.11**
+​	但是这种方法在总体数据集上的效果比原论文的效果稍微偏差，但是相比其他单纯使用采样方法效果有所提升。这说明：在Zero short的N2N方法中，通过适当更换合适的采样方法可以提升模型的降噪效果。
+
+​	
+
 ### 2.3不同采样不同噪声对比
 #### type:gauss level:25
 | 采样方法 | orignal | remoteWeight |remoteNegativeWeight|threeSizeSample|stripe|maxAndAvgPool|avgPoolAndRandomPool|maxPoolAndRandomPool|
@@ -234,3 +269,101 @@ output2 = randomPooler(img)
 
 ### 3.8 后续工作
 - 因为存在清晰图像，所以本文使用的PSNR参数用于最终图像效果的评判。对于无清晰图像的数据，我们可以通过sobel算子、Brenner梯度函数等这类无参考的清晰度判定方法来进行采样方法的对比，兴许可以挖掘出不同采样方法相比原论文采样的优势。
+
+
+
+## Part4 噪声水平与PSNR值对比表（更新）
+
+### Gauss噪声类型
+
+#### 1.噪声水平 10
+
+| **数据集**   | **样本类型**              | **PSNR值（dB）** |
+| ------------ | ------------------------- | ---------------- |
+| **Kodak24**  | **original**              | **31.765**       |
+| **McMaster** | **original**              | **32.607**       |
+| Kodak24      | avgPoolAndRandomPool      | 29.063           |
+| McMaster     | avgPoolAndRandomPool      | 29.921           |
+| Kodak24      | threeSizeSample           | 31.023           |
+| McMaster     | threeSizeSample           | 31.382           |
+| Kodak24      | stripe                    | 29.390           |
+| McMaster     | stripe                    | 29.936           |
+| Kodak24      | avgPoolAndRandomPool_step | 29.017           |
+| McMaster     | avgPoolAndRandomPool_step | 30.420           |
+
+### 2.噪声水平 25
+
+| **数据集**   | **样本类型**              | **PSNR值（dB）** |
+| ------------ | ------------------------- | ---------------- |
+| **Kodak24**  | **original**              | **28.201**       |
+| **McMaster** | **original**              | **27.720**       |
+| Kodak24      | avgPoolAndRandomPool      | 26.611           |
+| McMaster     | avgPoolAndRandomPool      | 26.647           |
+| Kodak24      | threeSizeSample           | 27.060           |
+| McMaster     | threeSizeSample           | 26.504           |
+| Kodak24      | stripe                    | 27.138           |
+| McMaster     | stripe                    | 26.895           |
+| Kodak24      | avgPoolAndRandomPool_step | 27.085           |
+| McMaster     | avgPoolAndRandomPool_step | 27.099           |
+
+### 3.噪声水平 50
+
+| 数据集       | 样本类型                  | PSNR值（dB） |
+| ------------ | ------------------------- | ------------ |
+| **Kodak24**  | **original**              | **24.265**   |
+| **McMaster** | **original**              | **23.227**   |
+| Kodak24      | avgPoolAndRandomPool      | 23.549       |
+| McMaster     | avgPoolAndRandomPool      | 22.861       |
+| Kodak24      | threeSizeSample           | 23.301       |
+| McMaster     | threeSizeSample           | 22.339       |
+| Kodak24      | stripe                    | 23.954       |
+| McMaster     | stripe                    | 22.996       |
+| Kodak24      | avgPoolAndRandomPool_step | 23.997       |
+| McMaster     | avgPoolAndRandomPool_step | 23.079       |
+
+### Poiss噪声类型
+
+### 1.噪声水平 10
+
+| 数据集       | 样本类型                  | PSNR值（dB） |
+| ------------ | ------------------------- | ------------ |
+| **Kodak24**  | **original**              | **24.640**   |
+| **McMaster** | **original**              | **24.738**   |
+| Kodak24      | avgPoolAndRandomPool      | 23.889       |
+| McMaster     | avgPoolAndRandomPool      | 24.384       |
+| Kodak24      | threeSizeSample           | 23.379       |
+| McMaster     | threeSizeSample           | 23.209       |
+| Kodak24      | stripe                    | 24.380       |
+| McMaster     | stripe                    | 24.526       |
+| Kodak24      | avgPoolAndRandomPool_step | 24.517       |
+| McMaster     | avgPoolAndRandomPool_step | 24.733       |
+
+### 2.噪声水平 25
+
+| 数据集       | 样本类型                  | PSNR值（dB） |
+| ------------ | ------------------------- | ------------ |
+| **Kodak24**  | **original**              | **27.110**   |
+| **McMaster** | **original**              | **27.282**   |
+| Kodak24      | avgPoolAndRandomPool      | 25.907       |
+| McMaster     | avgPoolAndRandomPool      | 26.470       |
+| Kodak24      | threeSizeSample           | 25.821       |
+| McMaster     | threeSizeSample           | 25.838       |
+| Kodak24      | stripe                    | 26.354       |
+| McMaster     | stripe                    | 26.724       |
+| Kodak24      | avgPoolAndRandomPool_step | 26.401       |
+| McMaster     | avgPoolAndRandomPool_step | 26.893       |
+
+### 3.噪声水平 50
+
+| 数据集       | 样本类型                  | PSNR值（dB） |
+| ------------ | ------------------------- | ------------ |
+| **Kodak24**  | **original**              | **28.780**   |
+| **McMaster** | **original**              | **29.136**   |
+| Kodak24      | avgPoolAndRandomPool      | 27.028       |
+| McMaster     | avgPoolAndRandomPool      | 27.808       |
+| Kodak24      | threeSizeSample           | 27.612       |
+| McMaster     | threeSizeSample           | 27.770       |
+| Kodak24      | stripe                    | 27.573       |
+| McMaster     | stripe                    | 28.068       |
+| Kodak24      | avgPoolAndRandomPool_step | 27.559       |
+| McMaster     | avgPoolAndRandomPool_step | 28.376       |
